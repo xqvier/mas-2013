@@ -1,6 +1,13 @@
 package prob.generator;
 
-public class UniformGenerator extends AbstractGenerator {
+
+/**
+ * Classe de génération de nombre aléatoires suivant la loi Uniforme
+ * @author axel lormeau
+ * @author mourgues xavier
+ *
+ */
+public class UniformGen extends AbstractGen {
 
 	/**
 	 * Abscisse minimale (Probabilite = 0)
@@ -16,12 +23,16 @@ public class UniformGenerator extends AbstractGenerator {
 	 * Constructeur d'un generateur de loi uniforme
 	 * @param seed
 	 */
-	public UniformGenerator(double min, double max) {
+	public UniformGen(double min, double max) {
 		super();
 		this.min = min;
 		this.max = max;
 	}
 
+	/**
+     * Génération du nombre aléatoire 
+     * @return nombre aléatoire suivant la loi choisie
+     */
 	@Override
 	public double nextDouble() {
 		//L'implementation par defaut de java retourne des nombres entre 0 et 1

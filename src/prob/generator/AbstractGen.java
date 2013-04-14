@@ -6,29 +6,26 @@ import java.util.Random;
 /**
  * Superclasse des generateurs aleatoires
  * Gere l'encapsulation des generateurs
- * @author CnCBoy
  */
-public abstract class AbstractGenerator implements Generator{
+public abstract class AbstractGen implements Generator{
 
 	/**
-	 * Generateur utilisé comme fondement
+	 * Generateur fondamental
 	 */
 	protected Random rand;
 	
 	/**
 	 * Constructeur pour les sous classes
-	 * @param seed Initialisateur du generateur pseudo-aleatoire
 	 */
-	public AbstractGenerator(){
+	public AbstractGen(){
 		rand = new Random();
 	}
 
-	/* (non-Javadoc)
-	 * @see prob.generator.Generator#nextDoubles(int)
+	/**
+	 * Charge un arrayList avec des nombre aléatoire
 	 */
-	@Override
 	public List<Double> nextDoubles(int nb) {
-		List<Double> results = new ArrayList<Double>(200);
+		List<Double> results = new ArrayList<Double>(nb);
 		for(int i =0; i < nb; i++){
 			results.add(nextDouble());
 		}
@@ -37,14 +34,14 @@ public abstract class AbstractGenerator implements Generator{
 
 	
 	/**
-	 * Retourne une borne par la laqulle la prob cumulé est atteinte
-	 * @param debRch
-	 * @return
+	 * Retourne une borne par la laquelle la prob cumulée est atteinte
+	 * @param debutRecherche
+	 * @return value : borne par laquelle la probabilité cumulée est atteinte
 	 */
-	public static double chercherValeur(Generator gen, double debRch, double cumul){
+	public static double chercherValeur(Generator gen, double debutRecherche, double cumul){
 		double pas = 1.0;
 		double oldValue = -1; //utilisation en cas de manque de precision
-		double value = debRch;
+		double value = debutRecherche;
 		double prob = gen.getTheory(value);
 		
 		while(oldValue != value &&
@@ -58,10 +55,7 @@ public abstract class AbstractGenerator implements Generator{
 				pas = pas / -2;
 			}
 			value += pas;
-			
 		}
-		
 		return value;
 	}
-	
 }
