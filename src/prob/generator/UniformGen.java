@@ -105,6 +105,6 @@ public class UniformGen extends AbstractGen {
 
 	@Override
 	public double getMoyenneTheorique(int nb) {
-		return 1.0 / (max - min);
+		return (min + max) / 2;
 	}
 }

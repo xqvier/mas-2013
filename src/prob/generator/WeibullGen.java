@@ -1,5 +1,7 @@
 package prob.generator;
 
+import cern.jet.stat.Gamma;
+
 
 /**
  * Classe de génération de nombre aléatoires suivant la loi de Weibull
@@ -120,6 +122,8 @@ public class WeibullGen extends AbstractGen {
 
 	@Override
 	public double getMoyenneTheorique(int nb) {
-		return lambda * kForme * (1 + 1 / nb);
+		return lambda * Gamma.gamma(1.0 + 1.0 / kForme);
 	}
+	
+	
 }
