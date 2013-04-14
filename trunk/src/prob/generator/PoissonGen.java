@@ -4,42 +4,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PoissonGenerator extends AbstractGenerator {
+/**
+ * Classe de génération de nombre aléatoires suivant la loi d
+ * Proprietés mathématiques de la loi
+ * Parametres Lambda
+ * @author axel lormeau
+ * @author mourgues xavier
+ *
+ */
+public class PoissonGen extends AbstractGen {
     
     /**
-     * ParamÃ¨tre de la loi de poisson
+     * Parametre de la loi de poisson
      */
     private double lambdaPoisson;
     
-    private ExponentialGenerator exponentialGenerator;
+    /**
+     * Générateur suivant la loi exponentielle
+     */
+    private ExpGen exponentialGenerator;
     
     /**
-     * Constructeur du gÃ©nÃ©rateur de nombres suivant une loi de poisson
+     * Constructeur du générateur de nombres suivant une loi de poisson
      * @param lambda : parametre de la loi de poisson
      */
-    public PoissonGenerator(double lambda) {
+    public PoissonGen(double lambda) {
     	super();
         this.lambdaPoisson = lambda;
-        this.exponentialGenerator = new ExponentialGenerator(Math.random());
+        this.exponentialGenerator = new ExpGen(Math.random());
     }
     
     /**
-     * GÃ©nÃ¨re un nombre alÃ©atoire suivant la loi de Poisson
+     * Générateur de nombre aléatoire suivant la loi de Poisson
      * 
-     * Cet algorithme gÃ©nÃ©re tout d'abord une liste de nombres aleatoires suivant une loi exponentielle 
-     * de paramÃ¨tre l. Lorsque la somme de ces nombre gÃ©nÃ©rÃ©s est supÃ©rieure Ã  la periode T 
-     * (calculÃ©e par : T = parametre lambda de cette loi de poisson / l), l'algorithme retourne
-     * le nombre N de valeurs gÃ©nÃ©rÃ©es suivant la loi exponentielle. Les valeurs de N suivent
-     *  alors la loi de poisson du gÃ©nÃ©rateur.
-     * 
+     * Cet algorithme se déroule comme ceci : 
+     * 1 - génération de nombre aléatoire suivant une loi exponentielle*
+     * 2 - lorsque la somme de ces nombres générée est > a la periode T (T = lambdaPoisson/1) l'algo retourne le nombre de valeur générée
+     * 3 - Cette valeur N suit alors la loi de poisson du générateur
      */
     @Override
     public double nextDouble() {
-        double t = lambdaPoisson / exponentialGenerator.getLambda();
-        
-        List<Double> exponentialValues = new ArrayList<Double>();
-        
-        while (t >= sum(exponentialValues)) {
+        double periode = lambdaPoisson / exponentialGenerator.getLambda();        
+        List<Double> exponentialValues = new ArrayList<Double>();        
+        while (periode >= sum(exponentialValues)) {
             exponentialValues.add(this.exponentialGenerator.nextDouble());
         }
         return exponentialValues.size() - 1;
@@ -51,7 +58,8 @@ public class PoissonGenerator extends AbstractGenerator {
      * Surcharge de l'implementation pour tenir compte de l'evenement en cours
      * lors de fin du derniers evenement exponentiel
 	 */
-	@Override
+	
+/*	@Override
 	public List<Double> nextDoubles(int nb) {
 		
 		//Periode
@@ -79,11 +87,12 @@ public class PoissonGenerator extends AbstractGenerator {
 		
 		return poissonValues;
 	}
+/*
 
 	/**
-     * Retourne la probabilitÃ© thÃ©orique (d'apres l'expression de la loi de Poisson)
+     * Retourne la probabilité théorique (d'apres l'expression de la loi de Poisson)
      * d'une valeur x
-     * @param x : la valeur dont on souhaite la probabilitÃ©, doit Ãªtre un entier
+     * @param x : la valeur dont on souhaite la probabilité, doit être un entier
      */
     @Override
     public double getTheory(double x) {
@@ -100,9 +109,9 @@ public class PoissonGenerator extends AbstractGenerator {
     }
     
     /**
-     * Calcul la somme des nombres de la liste donnÃ©e en paramÃ¨tre.
-     * @param list
-     * @return la somme
+     * Calcul la somme des nombres d'une liste  .
+     * @param list liste des nombres dont on veut la somme
+     * @return la somme des nombres dans list
      */
     private double sum(List<Double> list) {
         double sum = 0.0;
@@ -118,14 +127,11 @@ public class PoissonGenerator extends AbstractGenerator {
      * @return la factorielle de x
      */
     private double fact(int x) {
-    	
-    	//Cas particulier de 0! FIX
-    	if (x == 0){
-    		
+    	if (x == 0){    		
     		return 1;
     	}
     	
-        double fact = x;
+        int fact = x;
         while (x > 1) {
             x--;
             fact *= x;

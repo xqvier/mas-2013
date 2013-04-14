@@ -3,47 +3,42 @@ package prob.generator;
 import java.util.List;
 
 /**
- * 
- */
-
-/**
- * Interface principale d'un generateur aléatoire
- * @author CnCBoy
+ * Interface de générateur de nombres aléatoires
  */
 public interface Generator {
 	
 	/**
-	 * Retourne une valeur conforme au generateur aléatoire
-	 * @return Valeur du generateur entre 0 et 1
+	 * Retourne un nombre aléatiore suivant le generateur aléatoire choisi
+	 * @return Nombre aléatoire généré entre 0 et 1 (non compris)
 	 */
 	public double nextDouble();
 	
 	/**
-	 * Retourne la valeur P((X<=x) de la fonction de repartion
+	 * Retourne la probabilité que X<=x
 	 * @param x seuil
-	 * @return Probabilite d'avoir une valeur inferieur ou egal à x
+	 * @return Probabilite d'avoir une valeur inferieur ou egal à x (suivant la fonction de répartition
 	 */
 	public double getTheory(double x);
 	
 	/**
-	 * Retourne la limite inferieure pour l'etude de ce generateur
-	 * @return 
+	 * Retourne la limite inferieure pour l'etude de ce générateur
+	 * @return limite inférieure pour ce générateur
 	 */
 	public double getMinSupport();
 	
 	/**
-	 * Retourne la limite superieure pour l'etude de ce generateur
-	 * @return 
+	 * Retourne la limite superieure pour l'etude de ce générateur
+	 * @return  limite superieure pour ce générateur
 	 */
 	public double getMaxSupport();
 	
 	/**
-	 * Obtient le nombre de degre à retrancher lors du test du Khi2
+	 * @return Nombre de degrés à retrancher lors du test du Khi2
 	 */
 	public int getParamLoi();
 	
 	/**
-	 * Indique que la loi est discrete
+	 * Indique si la loi est discrete
 	 * @return
 	 */
 	public boolean estDiscret();
@@ -57,7 +52,7 @@ public interface Generator {
 	/**
 	 * Tire une liste de nb nombre aléaoire
 	 * @param nb Un de nombre à tirer
-	 * @return
+	 * @return nb nombre aléatoires dans une Liste<Double>
 	 */
 	public List<Double> nextDoubles(int nb);
 }

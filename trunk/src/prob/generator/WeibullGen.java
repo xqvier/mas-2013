@@ -1,6 +1,14 @@
 package prob.generator;
 
-public class WeibullGenerator extends AbstractGenerator {
+
+/**
+ * Classe de génération de nombre aléatoires suivant la loi de Weibull
+
+ * @author axel lormeau
+ * @author mourgues xavier
+ *
+ */
+public class WeibullGen extends AbstractGen {
 
 	/**
 	 * Parametre de forme
@@ -14,18 +22,21 @@ public class WeibullGenerator extends AbstractGenerator {
 	
 	/**
 	 * Generateur de weinbull
-	 * @param k /k > 0 est le paramÃ¨tre de forme
-	 * @param  Î» > 0 le paramÃ¨tre d'Ã©chelle de la distribution.
+	 * @param k /k > 0 est le parametre de forme
+	 * @param  l (lambda) echelle de la distribution.
 	 */
-	public WeibullGenerator(double k, double l) {
+	public WeibullGen(double k, double l) {
 		super();
 		this.kForme = k;
 		this.lambda = l;
 	}
 
+	/**
+     * Génération du nombre aléatoire
+     * @return nombre aléatoire suivant la loi choisie 
+     */
 	@Override
-	public double nextDouble() {
-		
+	public double nextDouble() {		
 		double x = super.rand.nextDouble();
 		return Math.pow(-Math.log(1.0-x),1.0/kForme)/lambda;
 	}

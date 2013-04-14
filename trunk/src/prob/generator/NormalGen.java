@@ -1,59 +1,58 @@
 package prob.generator;
-/**
- * 
- */
+
 
 /**
- * @author a.delevaux
+ * Classe de génération de nombre aléatoires suivant la loi normale
+ * Proprietés mathématiques de la loi
+ * De moyenne moyenne et écart-type ecartType 
+ * définie sur I = [NEGATIVE_INFINITE, POSITIVE_INFINITE]
+ * @author axel lormeau
+ * @author mourgues xavier
  *
  */
-public class NormaleGenerator extends AbstractGenerator {
+public class NormalGen extends AbstractGen {
 
 	/**
-	 * la moyenne de la loi normale
+	 * Moyenne de la loi normale
 	 */
 	private double moyenne;
+	
 	/**
-	 * l'ecart type de la loi normale
+	 * Ecart type de la loi normale
 	 */
 	private double ecartType;
 	
 	/**
 	 * Constructeur de générateur de la loi normale
-	 * @param seed  Initialisateur du generateur pseudo-aleatoire
 	 * @param moyenne moyenne de la loi normale générée
 	 * @param ecartType ecart type de la loi normale générée
 	 */
-	public NormaleGenerator(double moyenne, double ecartType) {
+	public NormalGen(double moyenne, double ecartType) {
 		super();
 		this.moyenne = moyenne;
 		this.ecartType = ecartType;
 	}
-
-	/* (non-Javadoc)
-	 * @see Generator#nextDouble()
-	 */
+	
+	/**
+     * Génération du nombre aléatoire 
+     * @return nombre aléatoire suivant la loi choisie
+     */
 	@Override
 	public double nextDouble() {
-		//variable aléatoire indépendante uniforme sur [0,1]
 		double u = rand.nextDouble();
-		///variable aléatoire indépendante uniforme sur [0,1]
 		double v = rand.nextDouble();
-		//variable aléatoire normale centrée réduite indépendante servant à générer une variable suivant la loi normale
+		// variable aléatoire normale centrée réduite indépendante servant à générer une variable suivant la loi normale
 		double xNormale = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 		//variable générée suivant la loi normale
 		double variableGeneree = xNormale * ecartType + moyenne;
 		return variableGeneree;
 	}
 
-	/* (non-Javadoc)
-	 * @see Generator#getTheory(double)
-	 */
+    /**
+     * Fonction de répartition
+     */
 	@Override
 	public double getTheory(double x) {
-		
-		//Cette approximation echoue au delas de 2
-		
 		//Correction pour prendre en compte les loi non centree reduite
 		x = x/ecartType-moyenne;
 		
