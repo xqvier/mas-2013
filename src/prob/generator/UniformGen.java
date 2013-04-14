@@ -102,4 +102,9 @@ public class UniformGen extends AbstractGen {
 	public String toString() {
 		return "Uniforme -  Min="+min+ " Max="+max;
 	}
+
+	@Override
+	public double getMoyenneTheorique(int nb) {
+		return 1.0 / (max - min);
+	}
 }

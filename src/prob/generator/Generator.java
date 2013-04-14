@@ -55,4 +55,19 @@ public interface Generator {
 	 * @return nb nombre aléatoires dans une Liste<Double>
 	 */
 	public List<Double> nextDoubles(int nb);
+	
+	/**
+	 * Renvoie la moyenne théorique de la loi parmis pour n évènements
+	 * @param nb le nombre d'évènement
+	 * @return la moyenne théorique
+	 */
+	public double getMoyenneTheorique(int nb);
+	
+	/**
+	 * Renvoie la moyenne réelle pour les n premier évènements.
+	 * @param nb le nombre d'évènement
+	 * @return la moyenne réelle
+	 */
+	public double getMoyenneReelle(int nb);
+	
 }

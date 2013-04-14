@@ -31,6 +31,16 @@ public abstract class AbstractGen implements Generator{
 		}
 		return results;
 	}
+	
+	@Override
+	public double getMoyenneReelle(int nb) {
+
+		double sum = 0.0;
+		for (Double value : nextDoubles(nb)) {
+			sum += value;
+		}
+		return sum / nb;
+	}
 
 	
 	/**

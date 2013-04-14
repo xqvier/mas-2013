@@ -190,5 +190,10 @@ public class PoissonGen extends AbstractGen {
 	public String toString() {
 		return "Poisson - Lambda="+lambdaPoisson;
 	}
+
+	@Override
+	public double getMoyenneTheorique(int nb) {
+		return lambdaPoisson;
+	}
 	
 }
