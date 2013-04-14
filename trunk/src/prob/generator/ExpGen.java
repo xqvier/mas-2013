@@ -102,5 +102,10 @@ public class ExpGen extends AbstractGen {
 	public String toString() {
 		return "Expoentielle -  Lambda="+lambda;
 	}
+
+	@Override
+	public double getMoyenneTheorique(int nb) {
+		return 1.0 / lambda;
+	}
 	
 }

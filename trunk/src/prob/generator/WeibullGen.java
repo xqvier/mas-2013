@@ -117,4 +117,9 @@ public class WeibullGen extends AbstractGen {
 	public String toString() {
 		return "Weibull -  PForme="+kForme+ " Lambda="+lambda;
 	}
+
+	@Override
+	public double getMoyenneTheorique(int nb) {
+		return lambda * kForme * (1 + 1 / nb);
+	}
 }
