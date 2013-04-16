@@ -73,7 +73,7 @@ public class LoiDePoisson extends AbstractLoi {
 
 	@Override
 	public double getBorneMax() {
-		int cpt = 0;
+		double cpt = 0.0;
 		// Condtion de limite flottante + marge cumul
 		while (loi(cpt) != loi(cpt + 1) && loi(cpt) < 0.99) {
 			cpt++;

@@ -1,5 +1,7 @@
 package prob.generator;
 
+import java.util.List;
+
 /**
  * Générateur de la loi exponentielle.
  * 
@@ -59,5 +61,4 @@ public class LoiExponentielle extends AbstractLoi {
 
 		return this.maxSupport;
 	}
-
 }

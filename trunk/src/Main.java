@@ -12,13 +12,15 @@ public class Main {
 	private static final int NB_ESSAI_MAX = 600;
 
 	public static void main(String[] args) {
-
+		List<Double> resultsGeneres = null;
+		List<Double> resultsTheoriques;
 		// LOI UNIFORME
 		double param = MathUtils.rand();
 		double param2;
 		do {
 			param2 = MathUtils.rand();
 		} while (param2 <= param);
+		int i;
 
 		System.out
 				.println("Test de la loi uniforme pour un paramètre min = 1 et max = 2");
@@ -28,12 +30,17 @@ public class Main {
 				+ loiUniforme.getMoyenneTheorique());
 
 		// Test des grands nombres
-		for (int i = 100; i <= NB_ESSAI_MAX; i += 100) {
-			List<Double> results = loiUniforme.loiInverse(i);
+		for (i = 100; i <= NB_ESSAI_MAX; i += 100) {
+			resultsGeneres = loiUniforme.randomInverse(i);
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
-					+ MathUtils.moyenne(results));
+					+ MathUtils.moyenne(resultsGeneres));
 		}
 		// Test du KHI2
+		resultsTheoriques = loiUniforme.loi(i);
+		
+		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(resultsTheoriques, resultsGeneres));
+		
+		
 
 		// LOI EXPONENTIELLE
 		param = MathUtils.rand();
@@ -47,10 +54,10 @@ public class Main {
 				+ loiExponentielle.getMoyenneTheorique());
 
 		// Test des grands nombres
-		for (int i = 100; i <= NB_ESSAI_MAX; i += 100) {
-			List<Double> results = loiExponentielle.loiInverse(i);
+		for (i = 100; i <= NB_ESSAI_MAX; i += 100) {
+			resultsGeneres = loiExponentielle.randomInverse(i);
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
-					+ MathUtils.moyenne(results));
+					+ MathUtils.moyenne(resultsGeneres));
 		}
 		// Test du KHI2
 
@@ -68,10 +75,10 @@ public class Main {
 				+ loiNormale.getMoyenneTheorique());
 
 		// Test des grands nombres
-		for (int i = 100; i <= NB_ESSAI_MAX; i += 100) {
-			List<Double> results = loiNormale.loiInverse(i);
+		for (i = 100; i <= NB_ESSAI_MAX; i += 100) {
+			resultsGeneres = loiNormale.randomInverse(i);
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
-					+ MathUtils.moyenne(results));
+					+ MathUtils.moyenne(resultsGeneres));
 		}
 		// Test du KHI2
 
@@ -86,10 +93,10 @@ public class Main {
 				+ loiDePoisson.getMoyenneTheorique());
 
 		// Test des grands nombres
-		for (int i = 100; i <= NB_ESSAI_MAX; i += 100) {
-			List<Double> results = loiDePoisson.loiInverse(i);
+		for (i = 100; i <= NB_ESSAI_MAX; i += 100) {
+			resultsGeneres = loiDePoisson.randomInverse(i);
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
-					+ MathUtils.moyenne(results));
+					+ MathUtils.moyenne(resultsGeneres));
 		}
 		// Test du KHI2
 
@@ -107,10 +114,10 @@ public class Main {
 				+ loiDeWeibull.getMoyenneTheorique());
 
 		// Test des grands nombres
-		for (int i = 100; i <= NB_ESSAI_MAX; i += 100) {
-			List<Double> results = loiDeWeibull.loiInverse(i);
+		for (i = 100; i <= NB_ESSAI_MAX; i += 100) {
+			resultsGeneres = loiDeWeibull.randomInverse(i);
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
-					+ MathUtils.moyenne(results));
+					+ MathUtils.moyenne(resultsGeneres));
 		}
 		// Test du KHI2
 
