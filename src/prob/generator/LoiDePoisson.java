@@ -30,15 +30,51 @@ public class LoiDePoisson extends AbstractLoi {
 	}
 
 	@Override
-	public double loiInverse() {
+	public double random() {
 		int i = 0;
 		double sum = 0.0;
 		while (sum < intervalle) {
-			sum += loiExponentielle.loiInverse();
+			sum += loiExponentielle.random();
 			i++;
 		}
 
 		return i - 1;
+	}
+
+	@Override
+	public int getParamLoi() {
+		return 0;
+	}
+
+	@Override
+	public double loi(double x) {
+        int xEntier = (int) Math.ceil(x);
+
+        double value = 0;
+        for (int i = 0; i <=xEntier; i++){
+        	double inc = Math.pow(lambda, i)*Math.exp(-lambda) / MathUtils.fact(i);
+
+        	value += inc;
+        }
+        
+        return value;
+	}
+
+	@Override
+	public boolean isDiscret() {
+		return false;
+	}
+
+	@Override
+	public double getBorneMin() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getBorneMax() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

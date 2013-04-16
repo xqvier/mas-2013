@@ -16,7 +16,7 @@ public interface ILoi {
 	 * 
 	 * @return la valeur associé au nombre y de la loi inverse.
 	 */
-	public double loiInverse();
+	public double random();
 
 	/**
 	 * Retourne une série générée par la loi inverse en générant plusieurs
@@ -27,4 +27,14 @@ public interface ILoi {
 	 * @return la série générée
 	 */
 	public List<Double> loiInverse(int pNbAGenere);
+
+	public double loi(double x);
+
+	public int getParamLoi();
+
+	public boolean isDiscret();
+
+	public double getBorneMin();
+
+	public double getBorneMax();
 }
