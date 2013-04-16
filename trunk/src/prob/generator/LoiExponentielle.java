@@ -28,9 +28,19 @@ public class LoiExponentielle extends AbstractLoi {
 	}
 
 	@Override
-	public double loiInverse() {
+	public double random() {
 		
 		return (-1.0 / lambda) * Math.log(1.0 - MathUtils.rand());
+	}
+
+	@Override
+	public int getParamLoi() {
+		return 0;
+	}
+
+	@Override
+	public double loi(double x) {
+        return 1.0 - Math.exp(-1 * lambda * x);
 	}
 
 

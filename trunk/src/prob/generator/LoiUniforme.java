@@ -1,6 +1,5 @@
 package prob.generator;
 
-
 public class LoiUniforme extends AbstractLoi {
 
 	/**
@@ -24,8 +23,18 @@ public class LoiUniforme extends AbstractLoi {
 	}
 
 	@Override
-	public double loiInverse() {
+	public double random() {
 		return min + (MathUtils.rand() * (max - min));
+	}
+
+	@Override
+	public int getParamLoi() {
+		return 0;
+	}
+
+	@Override
+	public double loi(double x) {
+		return (x - min) / (max - min);
 	}
 
 }

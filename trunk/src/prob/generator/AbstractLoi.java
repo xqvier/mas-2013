@@ -9,7 +9,7 @@ public abstract class AbstractLoi implements ILoi {
 	public List<Double> loiInverse(int pNbAGenere) {
 		ArrayList<Double> results = new ArrayList<>(pNbAGenere);
 		for (int i = 0; i < pNbAGenere; i++) {
-			results.add(loiInverse());
+			results.add(random());
 		}
 		return results;
 	}
