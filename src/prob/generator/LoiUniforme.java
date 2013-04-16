@@ -37,4 +37,19 @@ public class LoiUniforme extends AbstractLoi {
 		return (x - min) / (max - min);
 	}
 
+	@Override
+	public boolean isDiscret() {
+		return false;
+	}
+
+	@Override
+	public double getBorneMin() {
+		return min;
+	}
+
+	@Override
+	public double getBorneMax() {
+		return max;
+	}
+
 }

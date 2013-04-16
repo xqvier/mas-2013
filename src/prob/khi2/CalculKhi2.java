@@ -174,22 +174,22 @@ public class CalculKhi2 {
 		
 		
 		//Si la loi est discrete
-		if(loi.estDiscret()){
+		if(loi.isDiscret()){
 			//Creation des listes à remplir
-			for (int i=(int) loi.getMinSupport(); i <= loi.getMaxSupport(); i++){
+			for (int i=(int) loi.getBorneMin(); i <= loi.getBorneMax(); i++){
 				double vInf = i;
 				double vSup = i+1;
 				classes.add(new Classe(vInf, vSup));
 			}
 		}else {
 			//Largeur de chaque classe
-			double classWidth= (loi.getMaxSupport()-loi.getMinSupport())/nbClass;
+			double classWidth= (loi.getBorneMax()-loi.getBorneMin())/nbClass;
 			
 			//Creation des listes à remplir
 			//On utilise le support connu de la focntion de repartition
 			for (int i=0; i < nbClass; i++){
-				double vInf = loi.getMinSupport()+classWidth*i;
-				double vSup = loi.getMinSupport()+classWidth*(i+1);
+				double vInf = loi.getBorneMin()+classWidth*i;
+				double vSup = loi.getBorneMin()+classWidth*(i+1);
 				classes.add(new Classe(vInf, vSup));
 			}
 		}
