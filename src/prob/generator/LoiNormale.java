@@ -1,6 +1,5 @@
 package prob.generator;
 
-
 public class LoiNormale extends AbstractLoi {
 
 	/**
@@ -24,12 +23,13 @@ public class LoiNormale extends AbstractLoi {
 	}
 
 	@Override
-	public double loiInverse() {		
+	public double loiInverse() {
 		double u = MathUtils.rand();
 		double v = MathUtils.rand();
-		double xNormal = Math.sqrt(-2 * Math.log(u))*Math.cos(2 * Math.PI * v);
-		
-		return (xNormal - moyenne) / ecartType;
+		double xNormal = Math.sqrt(-2.0 * Math.log(u))
+				* Math.cos(2.0 * Math.PI * v);
+
+		return xNormal * ecartType + moyenne;
 	}
 
 }

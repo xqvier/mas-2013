@@ -50,7 +50,7 @@ public class MathUtils {
 	 * @return le résultat de la fonction gamma
 	 */
 	public static double gamma(double x) {
-		// TODO
+		
 		return 0.0;
 	}
 
