@@ -35,10 +35,8 @@ public class Main {
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
 					+ MathUtils.moyenne(resultsGeneres));
 		}
-		// Test du KHI2
-		resultsTheoriques = loiUniforme.loi(i);
-		
-		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(resultsTheoriques, resultsGeneres));
+		// Test du KHI2		
+		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(loiUniforme, resultsGeneres));
 		
 		
 
@@ -59,7 +57,8 @@ public class Main {
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
 					+ MathUtils.moyenne(resultsGeneres));
 		}
-		// Test du KHI2
+		// Test du KHI2		
+		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(loiExponentielle, resultsGeneres));
 
 		// LOI NORMALE
 		param = MathUtils.rand();
@@ -80,8 +79,9 @@ public class Main {
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
 					+ MathUtils.moyenne(resultsGeneres));
 		}
-		// Test du KHI2
-
+		// Test du KHI2		
+		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(loiNormale, resultsGeneres));
+		
 		// LOI DE POISSON
 		param = MathUtils.rand();
 		System.out
@@ -98,8 +98,9 @@ public class Main {
 			System.out.println("Moyenne réelle (pour " + i + " essais) = "
 					+ MathUtils.moyenne(resultsGeneres));
 		}
-		// Test du KHI2
-
+		// Test du KHI2		
+		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(loiDePoisson, resultsGeneres));
+		
 		// LOI DE WEIBULL
 		param = MathUtils.rand();
 		param2 = MathUtils.rand();
@@ -120,6 +121,7 @@ public class Main {
 					+ MathUtils.moyenne(resultsGeneres));
 		}
 		// Test du KHI2
+		System.out.println("L'indicateur du khi2 est : " +MathUtils.calculIndicateurKhi2(loiDeWeibull, resultsGeneres));
 
 	}
 }

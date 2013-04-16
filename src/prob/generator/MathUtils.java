@@ -108,7 +108,7 @@ public class MathUtils {
 		return result;
 	}
 
-	public static double calculIndicateurKhi2(List<Double> calculTheorique,
+	public static double calculIndicateurKhi2(ILoi loi,
 			List<Double> calculObserve) {
 		double intervalleClass = (getMax(calculObserve) - getMin(calculObserve))
 				/ NB_CLASS;
@@ -120,9 +120,14 @@ public class MathUtils {
 
 		while (max <= getMax(calculObserve)) {
 			// calcul de la fréquence dans la classe
-			khi2 += Math.pow(getValuesBetween(calculObserve, min, max).size()
-					- getValuesBetween(calculTheorique, min, max).size(), 2)
-					/ getValuesBetween(calculTheorique, min, max).size();
+			double frequenceObserve = getValuesBetween(calculObserve, min, max)
+					.size();
+
+			double frequenceTheorique = (loi.loi(max) - loi.loi(min))
+					* calculObserve.size();
+
+			khi2 += Math.pow(frequenceObserve - frequenceTheorique, 2)
+					/ frequenceTheorique;
 			min = min + intervalleClass;
 			max = min + intervalleClass;
 
