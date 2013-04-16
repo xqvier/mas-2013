@@ -1,5 +1,6 @@
 package prob.generator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,6 +11,9 @@ import java.util.Random;
  * @author Xavier Mourgues
  */
 public class MathUtils {
+
+	private static final int NB_CLASS = 10;
+
 	/**
 	 * Renvoie un nombre aléatoire entre 0 et 1
 	 * 
@@ -50,7 +54,7 @@ public class MathUtils {
 	 * @return le résultat de la fonction gamma
 	 */
 	public static double gamma(double x) {
-		
+
 		return 0.0;
 	}
 
@@ -69,4 +73,61 @@ public class MathUtils {
 		return sum / pValues.size();
 	}
 
+	public static double getMin(List<Double> pValues) {
+		double min = pValues.get(0);
+
+		for (Double value : pValues) {
+			if (value < min) {
+				min = value;
+			}
+		}
+
+		return min;
+	}
+
+	public static double getMax(List<Double> pValues) {
+		double max = pValues.get(0);
+
+		for (Double value : pValues) {
+			if (value > max) {
+				max = value;
+			}
+		}
+
+		return max;
+	}
+
+	public static List<Double> getValuesBetween(List<Double> list, double min,
+			double max) {
+		List<Double> result = new ArrayList<Double>();
+		for (Double value : list) {
+			if (value >= min && value < max) {
+				result.add(value);
+			}
+		}
+		return result;
+	}
+
+	public static double calculIndicateurKhi2(List<Double> calculTheorique,
+			List<Double> calculObserve) {
+		double intervalleClass = (getMax(calculObserve) - getMin(calculObserve))
+				/ NB_CLASS;
+
+		double min = getMin(calculObserve);
+		double max = min + intervalleClass;
+
+		double khi2 = 0.0;
+
+		while (max <= getMax(calculObserve)) {
+			// calcul de la fréquence dans la classe
+			khi2 += Math.pow(getValuesBetween(calculObserve, min, max).size()
+					- getValuesBetween(calculTheorique, min, max).size(), 2)
+					/ getValuesBetween(calculTheorique, min, max).size();
+			min = min + intervalleClass;
+			max = min + intervalleClass;
+
+		}
+
+		return khi2;
+	}
 }

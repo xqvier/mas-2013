@@ -26,10 +26,12 @@ public interface ILoi {
 	 *            Le nombre d'évènements à générer
 	 * @return la série générée
 	 */
-	public List<Double> loiInverse(int pNbAGenere);
+	public List<Double> randomInverse(int pNbAGenere);
 
 	public double loi(double x);
-
+	
+	public List<Double> loi(int pNbAGenere);
+	
 	public int getParamLoi();
 
 	public boolean isDiscret();

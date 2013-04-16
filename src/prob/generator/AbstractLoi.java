@@ -5,11 +5,24 @@ import java.util.List;
 
 public abstract class AbstractLoi implements ILoi {
 
+	public final static double CLASSE_TAILLE = 0.00002;
+	
+	
 	@Override
-	public List<Double> loiInverse(int pNbAGenere) {
+	public List<Double> randomInverse(int pNbAGenere) {
 		ArrayList<Double> results = new ArrayList<>(pNbAGenere);
 		for (int i = 0; i < pNbAGenere; i++) {
 			results.add(random());
+		}
+		return results;
+	}
+	
+
+	@Override
+	public List<Double> loi(int pNbAGenere) {
+		ArrayList<Double> results = new ArrayList<>(pNbAGenere);
+		for (int i = 0; i < pNbAGenere; i++) {
+			results.add(loi(CLASSE_TAILLE));
 		}
 		return results;
 	}
@@ -42,4 +55,6 @@ public abstract class AbstractLoi implements ILoi {
 		
 		return value;
 	}
+	
+	
 }
