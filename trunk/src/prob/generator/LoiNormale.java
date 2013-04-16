@@ -12,6 +12,10 @@ public class LoiNormale extends AbstractLoi {
 	 */
 	private double ecartType;
 
+	private Double minSupport = Double.NaN;
+
+	private Double maxSupport = Double.NaN;
+
 	public LoiNormale(double pMoyenne, double pEcartType) {
 		moyenne = pMoyenne;
 		ecartType = pEcartType;
@@ -51,4 +55,26 @@ public class LoiNormale extends AbstractLoi {
 		return th;
 	}
 
+	@Override
+	public boolean isDiscret() {
+		return false;
+	}
+
+	@Override
+	public double getBorneMin() {
+		if (this.minSupport.equals(Double.NaN)) {
+			this.minSupport = super.chercherValeur(this, 0.0, 0.0001);
+		}
+
+		return -2;
+	}
+
+	@Override
+	public double getBorneMax() {
+		if (this.maxSupport.equals(Double.NaN)) {
+			this.maxSupport = super.chercherValeur(this, 0, 0.9999);
+		}
+
+		return this.maxSupport;
+	}
 }

@@ -48,33 +48,37 @@ public class LoiDePoisson extends AbstractLoi {
 
 	@Override
 	public double loi(double x) {
-        int xEntier = (int) Math.ceil(x);
+		int xEntier = (int) Math.ceil(x);
 
-        double value = 0;
-        for (int i = 0; i <=xEntier; i++){
-        	double inc = Math.pow(lambda, i)*Math.exp(-lambda) / MathUtils.fact(i);
+		double value = 0;
+		for (int i = 0; i <= xEntier; i++) {
+			double inc = Math.pow(lambda, i) * Math.exp(-lambda)
+					/ MathUtils.fact(i);
 
-        	value += inc;
-        }
-        
-        return value;
+			value += inc;
+		}
+
+		return value;
 	}
 
 	@Override
 	public boolean isDiscret() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public double getBorneMin() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double getBorneMax() {
-		// TODO Auto-generated method stub
-		return 0;
+		int cpt = 0;
+		// Condtion de limite flottante + marge cumul
+		while (loi(cpt) != loi(cpt + 1) && loi(cpt) < 0.99) {
+			cpt++;
+		}
+		return cpt;
 	}
 
 }
