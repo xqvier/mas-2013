@@ -1,8 +1,11 @@
 package prob.ui;
 
+import java.awt.BorderLayout;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -20,6 +23,7 @@ public class Fenetre extends JFrame {
 
 	public Fenetre(PoissonProcess processusDePoisson) {
 
+		this.setLayout(new BorderLayout());
 		List<Integer> nbParIntervalle = processusDePoisson
 				.poissonProcessRandom();
 
@@ -32,13 +36,9 @@ public class Fenetre extends JFrame {
 		for (int i = 0; i < processusDePoisson.getNbTirages(); i++) {
 			intervalles = new XYSeries("N = " + nbParIntervalle.get(i));
 			xySeriesCollection.addSeries(intervalles);
-			for (int j = 0; j <= 10; j++) {
+			for (int j = 0; j <= 3; j++) {
 				intervalles.add(j, ((i + 1) * processusDePoisson.getDeltaT()));
 			}
-		}
-
-		for (Integer nb : nbParIntervalle) {
-			System.out.println(nb);
 		}
 
 		double sum = 0.0;
@@ -62,8 +62,14 @@ public class Fenetre extends JFrame {
 				PlotOrientation.HORIZONTAL, false, true, false);
 
 		ChartPanel panel = new ChartPanel(chart);
-		this.add(panel);
+		this.add(panel, BorderLayout.CENTER);
 		this.setSize(1024, 768);
 
+		JPanel panel2 = new PanelNbParIntervalle();
+
+		for (Integer nb : nbParIntervalle) {
+			panel2.add(new JLabel("N = " + nb.toString()));
+		}
+		this.add(panel2, BorderLayout.SOUTH);
 	}
 }
