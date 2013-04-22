@@ -7,7 +7,6 @@ public class PoissonProcess {
 
 	/** Attributs de classe */
 	private int deltaT; // intervalle de tempx pour compter
-	private double lambda;
 	private int nbTirages; // nombre de deltaT
 	private ArrayList<Integer> list = new ArrayList<Integer>();
 	private LoiExponentielle expGen;
@@ -15,7 +14,6 @@ public class PoissonProcess {
 
 	public PoissonProcess(int pDeltaT, double pLambda, int pNbTirage) {
 		this.deltaT = pDeltaT;
-		this.lambda = pLambda;
 		this.nbTirages = pNbTirage;
 		expGen = new LoiExponentielle(pLambda);
 	}
@@ -24,13 +22,10 @@ public class PoissonProcess {
 		int result = 0;
 		double pas = 0.0;
 		tirageExponentielle = expGen.randomInverse(nbTirages * 100);
-		int i = 0;
-
 		for (Double exp : tirageExponentielle) {
 
 			if (list.size() != nbTirages) {
 				if (pas > deltaT) {
-					i++;
 					list.add(result);
 					result = 0;
 					pas = 0.0;
