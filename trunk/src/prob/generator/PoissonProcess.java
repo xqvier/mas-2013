@@ -21,7 +21,7 @@ public class PoissonProcess {
 	public ArrayList<Integer> poissonProcessRandom() {
 		int result = 0;
 		double pas = 0.0;
-		tirageExponentielle = expGen.randomInverse(nbTirages * 100);
+		tirageExponentielle = expGen.randomInverse(nbTirages * 20);
 		for (Double exp : tirageExponentielle) {
 
 			if (list.size() != nbTirages) {
@@ -37,13 +37,6 @@ public class PoissonProcess {
 
 		}
 		return list;
-	}
-
-	public static void main(String[] args) {
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		PoissonProcess processusDePoisson = new PoissonProcess(20, 0.5, 5);
-		list = processusDePoisson.poissonProcessRandom();
-		System.out.println(list.toString());
 	}
 
 	public List<Double> getTirageExponentielle() {
