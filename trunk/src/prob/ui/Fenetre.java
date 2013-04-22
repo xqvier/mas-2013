@@ -43,9 +43,7 @@ public class Fenetre extends JFrame {
 
 		double sum = 0.0;
 		for (int i = 0; i < processusDePoisson.getTirageExponentielle().size(); i++) {
-			System.out.println(sum);
-			System.out.println(processusDePoisson.getNbTirages()
-					* processusDePoisson.getDeltaT());
+
 			if (sum <= processusDePoisson.getNbTirages()
 					* processusDePoisson.getDeltaT()) {
 				evenements = new XYSeries("eve" + i);
