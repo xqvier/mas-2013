@@ -10,7 +10,7 @@ public abstract class AbstractLoi implements ILoi {
 	
 	@Override
 	public List<Double> randomInverse(int pNbAGenere) {
-		ArrayList<Double> results = new ArrayList<>(pNbAGenere);
+		ArrayList<Double> results = new ArrayList<Double>(pNbAGenere);
 		for (int i = 0; i < pNbAGenere; i++) {
 			results.add(random());
 		}
@@ -20,7 +20,7 @@ public abstract class AbstractLoi implements ILoi {
 
 	@Override
 	public List<Double> loi(int pNbAGenere) {
-		ArrayList<Double> results = new ArrayList<>(pNbAGenere);
+		ArrayList<Double> results = new ArrayList<Double>(pNbAGenere);
 		for (int i = 0; i < pNbAGenere; i++) {
 			results.add(loi(CLASSE_TAILLE));
 		}

@@ -1,19 +1,17 @@
 package prob.generator;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-
+import java.util.List;
 
 public class PoissonProcess {
-		
+
 	/** Attributs de classe */
 	private int deltaT; // intervalle de tempx pour compter
 	private double lambda;
-	private int nbTirages ; //nombre de deltaT
+	private int nbTirages; // nombre de deltaT
 	private ArrayList<Integer> list = new ArrayList<Integer>();
 	private LoiExponentielle expGen;
-		
+	private List<Double> tirageExponentielle;
 
 	public PoissonProcess(int pDeltaT, double pLambda, int pNbTirage) {
 		this.deltaT = pDeltaT;
@@ -21,30 +19,48 @@ public class PoissonProcess {
 		this.nbTirages = pNbTirage;
 		expGen = new LoiExponentielle(pLambda);
 	}
-	
-	public ArrayList<Integer> poissonProcessRandom(){
+
+	public ArrayList<Integer> poissonProcessRandom() {
 		int result = 0;
 		double pas = 0.0;
-		for (int numInterval = 1 ; numInterval < nbTirages ; numInterval++) {
-			while ((pas += expGen.random()) < deltaT*numInterval) {
-				result++;
-				System.out.println(pas);
+		tirageExponentielle = expGen.randomInverse(nbTirages * 100);
+		int i = 0;
+
+		for (Double exp : tirageExponentielle) {
+
+			if (list.size() != nbTirages) {
+				if (pas > deltaT) {
+					i++;
+					list.add(result);
+					result = 0;
+					pas = 0.0;
+				} else {
+					result++;
+					pas += exp;
+				}
 			}
-			list.add(result);
-			result = 0;
+
 		}
 		return list;
 	}
-	
 
-	
-	public static void main (String[] args) {
+	public static void main(String[] args) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		PoissonProcess processusDePoisson = new PoissonProcess(20, 0.5, 5);
 		list = processusDePoisson.poissonProcessRandom();
 		System.out.println(list.toString());
-		
 	}
-	
-	
+
+	public List<Double> getTirageExponentielle() {
+		return tirageExponentielle;
+	}
+
+	public int getDeltaT() {
+		return deltaT;
+	}
+
+	public int getNbTirages() {
+		return nbTirages;
+	}
+
 }
