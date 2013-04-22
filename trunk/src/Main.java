@@ -11,7 +11,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		PoissonProcess processusDePoisson = new PoissonProcess(20, 0.5, 5);
+		PoissonProcess processusDePoisson = new PoissonProcess(10, 0.8, 10);
 		
 		JFrame fenetre = new Fenetre(processusDePoisson);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
