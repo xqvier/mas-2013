@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class MathUtils {
 
-	private static final int NB_CLASS = 10;
+	public static final int NB_CLASS = 10;
 
 	/**
 	 * Renvoie un nombre aléatoire entre 0 et 1

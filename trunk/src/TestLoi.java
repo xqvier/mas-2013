@@ -13,7 +13,6 @@ public class TestLoi {
 
 	public static void main(String[] args) {
 		List<Double> resultsGeneres = null;
-		List<Double> resultsTheoriques;
 		// LOI UNIFORME
 		double param = MathUtils.rand();
 		double param2;
