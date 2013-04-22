@@ -1,6 +1,8 @@
 package prob.ui;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -10,7 +12,10 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYBarDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -36,7 +41,7 @@ public class Fenetre extends JFrame {
 		for (int i = 0; i < processusDePoisson.getNbTirages(); i++) {
 			intervalles = new XYSeries("N = " + nbParIntervalle.get(i));
 			xySeriesCollection.addSeries(intervalles);
-			for (int j = 0; j <= 3; j++) {
+			for (int j = 0; j <= 2; j++) {
 				intervalles.add(j, ((i + 1) * processusDePoisson.getDeltaT()));
 			}
 		}
@@ -58,8 +63,17 @@ public class Fenetre extends JFrame {
 		JFreeChart chart = ChartFactory.createXYLineChart(
 				"processus de poisson", "", "evenements", dataset,
 				PlotOrientation.HORIZONTAL, false, true, false);
-
 		ChartPanel panel = new ChartPanel(chart);
+
+		XYPlot plot = chart.getXYPlot();
+
+		XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot
+				.getRenderer();
+		for (int i = 0; i < dataset.getSeriesCount(); i++) {
+			renderer.setSeriesPaint(i, Color.BLACK);
+		}
+		plot.setRenderer(renderer);
+
 		this.add(panel, BorderLayout.CENTER);
 		this.setSize(1024, 768);
 
